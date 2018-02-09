@@ -22,28 +22,34 @@
   <body>
 		<!-- Header Part -->
     <div class="jumbotron" id="listTile">
-      <button type="button" class="btn btn-secondary" style="float: left;">
-        <a href="/" style="color: black">< back</a>
-      </button>
+      <a href="/">
+        <button type="button" class="btn btn-secondary" style="float: left;">
+          Back
+        </button>
+      </a>
 
       <!-- List Name shown in the middle-->
       <span id="listName">{{listName}}</span>
-
-      <button type="button" class="btn btn-secondary" style="float: right;">
+      <a href='/edit'>
+      <button type="button" class="btn btn-secondary" style="float: right;" 
+      onclick="toggleEdit()">
         Edit
       </button>
-
-      <button type="button" class="btn btn-secondary" style="float: right;">
+    </a>
+      <a href='/help'>
+        <button type="button" class="btn btn-secondary" style="float: right;">
         ?
-      </button>
+        </button>
+      </a>
     </div>
 
     <!-- function Part -->
     <ul class="nav">
-      <button type="button" class="btn btn-danger btn-lg" style="float: left;" onclick="showNewItemForm()">
+      <button type="button" class="btn btn-danger btn-lg" style="float: left;" 
+      onclick="showNewItemForm()">
         New Item
       </button>
-      <button type="button" class="btn btn-danger btn-lg">
+      <button type="button" class="btn btn-danger btn-lg" onclick="showNewLinkForm()">
         Share
       </button>
       <button type="button" class="btn btn-danger btn-lg" style="float: right;">
@@ -51,20 +57,49 @@
       </button>
     </ul>
 
-    <!-- list part -->
+    <!-- entry part -->
     <div id="newItemDisplay" style="display: none">
       <form id="newItemForm" action="">
         Item Name:<br>
-        <input type="text" name="firstname" value="">
+        <input type="text" value="">
         <br>
         <br>
         <input type="submit" value="Submit" >
       </form> 
     </div>
 
-    <hr id="contentHeader">
+    <!-- share button link -->
+    <div id="newLinkDisplay" style="display: none">
+        <form name="newLinkForm" id="newLinkForm" action="">
+        Link of this form:<br>
+        <input type="text" name="link" value="">
+        <br>
+        <br>
+        <input type="submit" value="Hide" >
+      </form> 
+    </div>
+
+    <!-- list items -->
+    <hr id="listContainer">
     <div id="realContent" style="display: none">
-      <h4>egg</h4>
+      <!-- example item 1-->
+      <div id="item">
+        <h4 style="float: left;">egg</h4>
+        <button id="remove" type="button" class="btn btn-danger" 
+        style="float: right;display: none">
+        Remove
+        </button>
+      </div>
+
+      <!-- example item 2-->
+      <div id="item">
+        <h4 style="float: left;">beer</h4>
+        <button id="remove" type="button" class="btn btn-danger" 
+        style="float: right;display: none">
+        Remove
+        </button>
+      </div>
+
     </div>
     </hr>
 
@@ -81,14 +116,33 @@
         $('#newItemDisplay').show();
       }
 
+      function showNewLinkForm() {
+        var currentURL = document.URL;
+        $('#newLinkDisplay').show();
+        document.newLinkForm.link.value = currentURL;
+        //document.getElementById("demo").innerHTML = currentURL;
+      }
+      
+      function toggleEdit(){
+        if($("#remove").is(":visible")){$("#remove").hide();}
+        else{$("#remove").show();}
+      }
+
 
       $( document ).ready(function() {
         // alert("page is ready");
         $("#newItemForm").submit(function(e) {
           e.preventDefault();
-          alert("we got your form");
+          alert("The item has been added");
           $("#newItemDisplay").hide()
           $("#realContent").show()
+        });
+
+        $("#newLinkForm").submit(function(e) {
+          e.preventDefault();
+          alert("The Link is Hidden");
+          $("#newLinkDisplay").hide()
+          //$("#realContent").show()
         });
       });
 

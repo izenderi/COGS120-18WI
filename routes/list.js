@@ -9,3 +9,8 @@ exports.viewList = function(req, res) { 
   });
 };
 
+exports.view = function(req, res) { 
+  // controller code goes here 
+  console.log(data.item[0]);
+  res.render('list', data);
+};

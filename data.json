@@ -1,11 +1,13 @@
 {
 	"item": [
 		{
-			"name": "butter"
+			"itemName": "butter",
+			"quantity": "1"
 				
 		},
 		{
-			"name": "beer"
+			"itemName": "beer",
+			"quantity": "2"
 		}
 	]
 }

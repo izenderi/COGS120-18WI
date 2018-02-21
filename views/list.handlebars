@@ -46,6 +46,7 @@
       onclick="toggleNewItemForm()">
         New Item
       </button>
+
       <button type="button" class="btn btn-danger btn-lg" onclick="toggleNewLinkForm()">
         Share
       </button>
@@ -86,7 +87,7 @@
 
     
     <div class="jumbotron">
-      {{#each item}}
+      {{#each db}}
       <div class="item">
         <a href="#">
         <h4 style="float: left; clear:left;">
@@ -94,7 +95,7 @@
         </h4>
         </a>
         <button id="remove" type="button" class="btn btn-danger" 
-        style="clear:right;float: right;display: none" onclick="hideItem()">
+        style="float: right;display: none" onclick="hideItem()">
         Remove
         </button>
         <h4 style="float: right;padding-right: 1.8em">
@@ -147,17 +148,16 @@
       }
 
       function toggleNewLinkForm() {
-        var currentURL = document.URL;
-        
+        var currentURL = window.location.hostname+"/list/{{listName}}";
 
         if($('#newLinkDisplay').is(":visible"))
-          {
-            $('#newLinkDisplay').fadeOut();
-          }
+        {
+          $('#newLinkDisplay').fadeOut();
+        }
         else
-          {
-            $('#newLinkDisplay').fadeIn();
-          }
+        {
+          $('#newLinkDisplay').fadeIn();
+        }
         document.newLinkForm.link.value = currentURL;
         
       }

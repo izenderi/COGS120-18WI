@@ -33,7 +33,7 @@
 
   	<div class="jumbotron" id="loginTile" >
   		<!-- login, edit, and ? buttons -->
-      <a href='/edit'>
+      <a href='/help'>
       <button type="button" class="btn btn-secondary" style="float: right;">
         ?
       </button>
@@ -50,20 +50,27 @@
         <div id="loginForm">
         <form style="text-align: center; color: white;"> 
           Email: <br>
-          <input class="loginBoxes" type="text" name="email" placeholder="user@example.com"> 
+          <input class="loginBoxes" type="text" name="email" placeholder="user@example.com" required> 
           <br>
           Password: <br>
-          <input class="loginBoxes" type="text" name="password" placeholder ="********"> 
+          <input class="loginBoxes" type="password" name="password" placeholder ="********" required> 
           <br>
           <!-- fake button until auth system works-->
           <!--input type="submit" value="Submit" color="class="btn"-->
           <a href="/indexLogged" class="btn btn-default"> Submit </a>
+          <p class="facebookLogin">
+            Or login through Facebook
+            <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+            </fb:login-button>
+          </p>
       </form>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    {{> facebook}}
+    <script src="/js/facebook.js"></script>
   </div>
   </body>
 </html>
